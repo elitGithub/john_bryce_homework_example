@@ -24,4 +24,4 @@ if ($result->num_rows !== 1) {
 // In a real app, here we'd flash a session message to the user, notifying them that their action was successful.
 $delResult = $connection->query('DELETE FROM users WHERE id = ' . $connection->real_escape_string($_GET['delete']));
 
-header('Location:index.php');
+header('Location:index.php?route=getusers');
