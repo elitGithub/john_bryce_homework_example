@@ -1,0 +1,7 @@
+procedural/env.php
+ObjectOriented/env.php
+.idea/
+/vendor/
+ObjectOriented/vendor/
+uploads/
+uploads/*

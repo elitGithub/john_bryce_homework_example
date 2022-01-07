@@ -33,6 +33,7 @@
                     <a class="nav-link" href="?route=uploadFile">Upload File</a>
                 </li>
             </ul>
+        </div>
     </nav>
 </div>
 <div class="container">
