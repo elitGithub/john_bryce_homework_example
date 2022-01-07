@@ -4,7 +4,9 @@ namespace Elit1\ObjectOriented\Helpers;
 
 class PreparedQMark2SqlValue
 {
-    // Constructor
+    private int $ctr;
+    private mixed $vals;
+
     public function __construct ($vals)
     {
         $this->ctr = 0;

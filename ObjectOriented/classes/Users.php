@@ -79,5 +79,13 @@ class Users extends Model
 
     }
 
+    public function delete (): bool
+    {
+        $sql = "DELETE FROM $this->table WHERE id = ?";
+        $this->db->pquery($sql, [$this->id]);
+        return $this->db->hasAffectedRows();
+    }
+
+
 
 }

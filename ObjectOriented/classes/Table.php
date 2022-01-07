@@ -45,7 +45,7 @@ class Table
       <td>{$row['age']}</td>
       <td>{$row['email']}</td>
       <td><a href='index.php?route=edituser&id={$row['id']}'><button class='btn btn-primary'>Edit</button></a></td>
-      <td><a href='deleteUser.php?delete={$row['id']}'><button class='btn btn-danger'>Delete</button></a></td>
+      <td><a href='index.php?route=deleteuser&delete={$row['id']}'><button class='btn btn-danger'>Delete</button></a></td>
                 </tr>";
         }
         return $this;
