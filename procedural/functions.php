@@ -72,7 +72,7 @@ function getUserById ($id, mysqli $conn)
     return $result->fetch_assoc();
 }
 
-function saveUser (array $userData, mysqli $conn, $id)
+function saveUser (array $userData, mysqli $conn, $id): mysqli_result | bool
 {
     $name = $conn->real_escape_string($userData['name']);
     $age = $conn->real_escape_string($userData['age']);
@@ -80,6 +80,23 @@ function saveUser (array $userData, mysqli $conn, $id)
     $id = $conn->real_escape_string($id);
     $sql = "UPDATE users SET name = '$name', age = '$age', email = '$email' WHERE id = '$id'";
     return $conn->query($sql);
+}
+
+function checkIsUnique($email, mysqli $conn, $id = ''): bool
+{
+    $sql = "SELECT * FROM users WHERE email = '" . $conn->real_escape_string($email) . "'";
+    if (!empty($id)) {
+        $sql .= " AND id <>'" . $conn->real_escape_string($id) . "';";
+    }
+    $result = $conn->query($sql);
+    return $result->num_rows > 0;
+}
+
+function errorAlert($message) {
+    echo "<div class='alert alert-danger' role='alert'>$message</div>";
+}
+function successAlert($message) {
+    echo "<div class='alert alert-success' role='alert'>$message</div>";
 }
 
 /**

@@ -87,5 +87,16 @@ class Users extends Model
     }
 
 
+    public static function idField ()
+    {
+        return 'id';
+    }
+
+    public function update (): bool
+    {
+        $sql = "UPDATE $this->table SET email = ?, name = ?, age = ? WHERE id = ?";
+        $this->db->pquery($sql, [$this->email, $this->name, $this->age, $this->id]);
+        return $this->db->hasAffectedRows();
+    }
 
 }

@@ -8,6 +8,11 @@ if (empty($_GET['id'])) {
 if (isset($_POST['submit'])) {
     $errors = validateInputHasKeys($_POST, ['name', 'email', 'age']);
     if (empty($errors)) {
+        $userExists = checkIsUnique($_POST['email'], $connection);
+        if ($userExists) {
+            errorAlert('User with this email already exists');
+            return;
+        }
         $result = saveUser($_POST, $connection, $_GET['id']);
         if ($result) {
             // This is a convenient way to naturally send the user back to the main page.

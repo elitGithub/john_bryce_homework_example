@@ -15,7 +15,7 @@ if (isset($submit)) {
     $model->name = $name ?? $model->name;
     $model->mode = 'edit';
     if ($model->validate()) {
-        if ($model->create()) {
+        if ($model->update()) {
             // This is a convenient way to naturally send the user back to the main page.
             SuccessAlert::echo('User updated successfully!');
             Navigator::redirectJs("index.php?route=getusers");

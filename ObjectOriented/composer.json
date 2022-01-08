@@ -12,6 +12,7 @@
         }
     ],
     "require": {
-        "adodb/adodb-php": "^5.21"
+        "adodb/adodb-php": "^5.21",
+      "ext-mysqli": "*"
     }
 }

@@ -88,7 +88,8 @@ abstract class Model
                     $uniqueAttr = $rule['attribute'] ?? $attribute;
                     $tableName = $className::tableName();
                     $db = Database::getInstance();
-                    $result = $db->getRecords("SELECT * FROM $tableName WHERE $uniqueAttr = ?", [$value]);
+                    $sql = "SELECT * FROM $tableName WHERE $uniqueAttr = ? AND " . $className::idField() . " <> ?";
+                    $result = $db->getRecords($sql, [$value, $this->id]);
                     if (sizeof($result) > 0) {
                         $this->addErrorForRule(
                             $attribute,
@@ -102,6 +103,8 @@ abstract class Model
 
         return empty($this->errors);
     }
+
+    abstract public static function idField();
 
     /**
      * @param  string        $attribute
