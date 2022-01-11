@@ -30,6 +30,9 @@
                     <a class="nav-link" href="?route=adduser">Add New User</a>
                 </li>
                 <li class="nav-item active">
+                    <a class="nav-link" href="?route=getAllFiles">Show my files</a>
+                </li>
+                <li class="nav-item active">
                     <a class="nav-link" href="?route=uploadFile">Upload File</a>
                 </li>
             </ul>

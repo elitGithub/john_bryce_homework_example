@@ -13,6 +13,7 @@ $routes = [
     'edituser',
     'deleteuser',
     'uploadFile',
+    'getAllFiles',
 ];
 
 // If we request nothing - we get the default.

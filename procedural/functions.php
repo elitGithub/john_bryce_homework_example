@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\Pure;
+
 require_once 'env.php';
 
 /**
@@ -54,6 +56,21 @@ function validateInputHasKeys (array $input, array $keys): array
 function getAllUsers (mysqli $conn)
 {
     $result = $conn->query('SELECT * FROM users');
+    if (!$result) {
+        return [];
+    }
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+#[Pure] function uploadPath(): bool | array | string
+{
+    return getenv('UPLOADS_DIR');
+}
+
+function getAllImages (mysqli $conn)
+{
+    $result = $conn->query('SELECT * FROM images');
     if (!$result) {
         return [];
     }
