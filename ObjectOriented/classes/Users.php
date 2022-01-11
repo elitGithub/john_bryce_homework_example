@@ -2,9 +2,10 @@
 
 namespace Elit1\ObjectOriented;
 
+use Elit1\ObjectOriented\Models\TableModel;
 use Exception;
 
-class Users extends Model
+class Users extends Model implements TableModel
 {
     private string $table = 'users';
     private string $idField = 'id';
@@ -86,6 +87,11 @@ class Users extends Model
         return $this->db->hasAffectedRows();
     }
 
+    public static function usersTable ()
+    {
+
+    }
+
 
     public static function idField ()
     {
@@ -99,4 +105,15 @@ class Users extends Model
         return $this->db->hasAffectedRows();
     }
 
+    public static function TableBody ($row)
+    {
+        echo "<tr>
+      <th scope='row'>{$row['id']}</th>
+      <td>{$row['name']}</td>
+      <td>{$row['age']}</td>
+      <td>{$row['email']}</td>
+      <td><a href='index.php?route=edituser&id={$row['id']}'><button class='btn btn-primary'>Edit</button></a></td>
+      <td><a href='index.php?route=deleteuser&delete={$row['id']}'><button class='btn btn-danger'>Delete</button></a></td>
+                </tr>";
+    }
 }

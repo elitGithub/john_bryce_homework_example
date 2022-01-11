@@ -10,6 +10,7 @@ class Router
         'edituser',
         'deleteuser',
         'uploadFile',
+        'showFiles' => [Controllers\ImagesController::Class, 'index'],
     ];
 
     /**
@@ -26,8 +27,12 @@ class Router
         return $this;
     }
 
-    public function resolve (): bool | string
+    public function resolve ()
     {
+        if (isset($this->routes[$this->route]) && is_array($this->routes[$this->route])) {
+            $this->routes[$this->route][0] = new $this->routes[$this->route][0]();
+            return call_user_func($this->routes[$this->route]);
+        }
         if (in_array($this->route, $this->routes, true)) {
             if ($this->request->isPost()) {
                 $body = $this->request->getBody();

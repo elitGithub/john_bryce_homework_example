@@ -19,6 +19,10 @@ class View
         $this->checkForViewsDir();
     }
 
+    public static function appRoot() {
+        return getenv('APP_ROOT') . DIRECTORY_SEPARATOR;
+    }
+
     /**
      * @return void
      * @throws Exception

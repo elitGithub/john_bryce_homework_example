@@ -18,7 +18,7 @@ use Elit1\ObjectOriented\Helpers\DoesDirExistsValidator;
 
 if (isset($_POST['submit'])) {
     $filesHandler = new FilesHandler();
-    $filesHandler->setUploadsDir(dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'uploads');
+    $filesHandler->setUploadsDir(dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'uploads');
     if (!DoesDirExistsValidator::dirExists($filesHandler->uploadsDir)) {
         CreateDirectory::createDir($filesHandler->uploadsDir);
     }

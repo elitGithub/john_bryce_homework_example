@@ -2,11 +2,14 @@
 
 namespace Elit1\ObjectOriented;
 
+use Elit1\ObjectOriented\Models\TableModel;
+
 class Table
 {
 
     private array $tableData;
     private array $tableHeader;
+    private TableModel $model;
 
     public function __construct (array $tableData, array $tableHeader)
     {
@@ -39,15 +42,19 @@ class Table
         }
 
         foreach ($this->tableData as $row) {
-            echo "<tr>
-      <th scope='row'>{$row['id']}</th>
-      <td>{$row['name']}</td>
-      <td>{$row['age']}</td>
-      <td>{$row['email']}</td>
-      <td><a href='index.php?route=edituser&id={$row['id']}'><button class='btn btn-primary'>Edit</button></a></td>
-      <td><a href='index.php?route=deleteuser&delete={$row['id']}'><button class='btn btn-danger'>Delete</button></a></td>
-                </tr>";
+            $this->model::TableBody($row);
         }
         return $this;
     }
+
+    /**
+     * @param  TableModel  $model
+     *
+     * @return Table
+     */
+    public function setModel (TableModel $model): Table
+    {
+        $this->model = $model;
+        return $this;
+}
 }

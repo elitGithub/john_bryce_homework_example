@@ -13,8 +13,6 @@ if (sizeof($images) < 1) {
 foreach ($images as $image) {
     // APP ROOT is the source from which we consider the root of the application. Here it is just a slash, but it could be something like '/src/public/', or the like.
     $src = uploadPath() . DIRECTORY_SEPARATOR . $image['filename'];
-    echo $image['filename'] . ' filename <br />';
-    echo $src . ' src<br />';
     echo "<tr>
       <th scope='row'>{$image['id']}</th>
       <td>{$image['filename']}</td>
