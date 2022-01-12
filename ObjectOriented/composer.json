@@ -1,18 +1,19 @@
 {
-    "name": "elit1/object_oriented",
-    "autoload": {
-        "psr-4": {
-            "Elit1\\ObjectOriented\\": "classes/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Eli Tokar",
-            "email": "52536795+elitGithub@users.noreply.github.com"
-        }
-    ],
-    "require": {
-        "adodb/adodb-php": "^5.21",
-      "ext-mysqli": "*"
+  "name": "elit1/object_oriented",
+  "autoload": {
+    "psr-4": {
+      "Elit1\\ObjectOriented\\": "classes/"
     }
+  },
+  "authors": [
+    {
+      "name": "Eli Tokar",
+      "email": "52536795+elitGithub@users.noreply.github.com"
+    }
+  ],
+  "require": {
+    "adodb/adodb-php": "^5.21",
+    "ext-mysqli": "*",
+    "ext-fileinfo": "*"
+  }
 }

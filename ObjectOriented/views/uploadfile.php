@@ -18,7 +18,7 @@ use Elit1\ObjectOriented\Helpers\DoesDirExistsValidator;
 
 if (isset($_POST['submit'])) {
     $filesHandler = new FilesHandler();
-    $filesHandler->setUploadsDir(dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'uploads');
+    $filesHandler->setUploadsDir(getenv('APP_ROOT') . DIRECTORY_SEPARATOR . getenv('UPLOADS_DIR'));
     if (!DoesDirExistsValidator::dirExists($filesHandler->uploadsDir)) {
         CreateDirectory::createDir($filesHandler->uploadsDir);
     }
@@ -26,12 +26,9 @@ if (isset($_POST['submit'])) {
 
     try {
         $ext = $filesHandler->fileValidation();
-        // You should name it uniquely.
-        // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
-        // On this example, obtain safe unique name from its binary data.
         $fileName = $filesHandler->uploadFile($ext);
     } catch (RuntimeException $e) {
-        echo $e->getMessage();
+        Elit1\ObjectOriented\Helpers\ErrorAlert::echo($e->getMessage());
         return;
     }
 

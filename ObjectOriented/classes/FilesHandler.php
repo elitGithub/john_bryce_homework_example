@@ -13,7 +13,7 @@ class FilesHandler
 {
 
     public string $uploadsDir;
-    public function __construct (private int $uploadMaxSize = 1000000) {}
+    public function __construct (private int $uploadMaxSize = 10000000) {}
 
     public function fileValidation (): bool | int | string
     {
@@ -46,6 +46,9 @@ class FilesHandler
 
     public function uploadFile ($ext): string
     {
+        // You should name it uniquely.
+        // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
+        // On this example, obtain safe unique name from its binary data.
         $fileName = HashName::generateFileNameHash($ext);
         if (!move_uploaded_file(
             $_FILES['upfile']['tmp_name'],
