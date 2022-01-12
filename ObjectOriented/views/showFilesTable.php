@@ -1,3 +1,5 @@
+
+<div class="row">
 <?php
 
 use Elit1\ObjectOriented\Card;
@@ -11,3 +13,6 @@ foreach ($images as $image) {
     $src = UploadsDir::uploadPath() . DIRECTORY_SEPARATOR . $image['filename'];
     Card::cardWithImage($src, 'Some title', 'some text');
 }
+
+?>
+</div>
