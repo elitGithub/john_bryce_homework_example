@@ -19,6 +19,7 @@ class Database
     private bool $isdb_default_utf8_charset = false;
     private string $default_charset = 'UTF-8';
     private bool $avoidPreparedSql = false;
+    public int|false $lastInsertId = 0;
 
     public static function getInstance (): static
     {
@@ -28,6 +29,19 @@ class Database
     public function __construct ()
     {
         $this->connect();
+    }
+
+    public function lastInsertId($table, $column)
+    {
+        $this->lastInsertId = $this->db->Insert_ID($table, $column);
+    }
+
+    /**
+     * @return false|int
+     */
+    public function getLastInsertId (): bool | int
+    {
+        return $this->lastInsertId;
     }
 
     private function connect ($dbDriver = 'mysqli')
@@ -152,8 +166,10 @@ class Database
         }
 
         $this->lastmysqlrow = -1;
+
         if (!$result) {
             if ($dieOnError) {
+                $this->db->debug = true;
                 die($msg);
             }
         }

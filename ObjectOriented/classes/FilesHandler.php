@@ -3,7 +3,6 @@
 namespace Elit1\ObjectOriented;
 
 use Elit1\ObjectOriented\Helpers\CompareIntSizes;
-use Elit1\ObjectOriented\Helpers\CreateHash;
 use Elit1\ObjectOriented\Helpers\FilesErrorsValidator;
 use Elit1\ObjectOriented\Helpers\HashName;
 use finfo;

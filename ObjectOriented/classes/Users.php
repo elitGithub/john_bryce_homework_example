@@ -20,6 +20,18 @@ class Users extends Model implements TableModel
         $this->db = new Database();
     }
 
+    public static function optionsForSelect ()
+    {
+        $db = new Database();
+        $result = $db->getRecords("SELECT * FROM users");
+        echo "<option value='nothing'>Please Select A user</option>";
+        if (!empty($result)) {
+            foreach ($result as $data) {
+                echo "<option value={$data['id']}>{$data['name']}</option>";
+            }
+        }
+    }
+
     public function getAllUsers (): array
     {
         return $this->db->getRecords("SELECT * FROM $this->table", []);
@@ -114,6 +126,7 @@ class Users extends Model implements TableModel
       <td>{$row['email']}</td>
       <td><a href='index.php?route=edituser&id={$row['id']}'><button class='btn btn-primary'>Edit</button></a></td>
       <td><a href='index.php?route=deleteuser&delete={$row['id']}'><button class='btn btn-danger'>Delete</button></a></td>
+      <td><a href='index.php?route=showFiles&user_id={$row['id']}'><button class='btn btn-success'>Show Files</button></a></td>
                 </tr>";
     }
 }

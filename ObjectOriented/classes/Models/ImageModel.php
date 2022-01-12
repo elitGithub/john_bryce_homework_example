@@ -19,6 +19,15 @@ class ImageModel implements TableModel
         return $this->db->getRecords('SELECT * FROM images', []);
     }
 
+    public function findByUserId($userID): array
+    {
+        $sql = "SELECT * FROM image2user JOIN images i on image2user.image_id = i.id WHERE image2user.user_id = ?;";
+        $result = $this->db->getRecords($sql, [$userID]);
+        if (!empty($result)) {
+           return $result;
+        }
+    }
+
     public static function TableBody ($row)
     {
         $src = UploadsDir::uploadPath() . DIRECTORY_SEPARATOR . $row['filename'];

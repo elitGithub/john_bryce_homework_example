@@ -20,8 +20,10 @@ class ImagesController
     }
 
     public function index() {
-
-        $this->view->requireView('showFilesTable', ['images' => $this->model->findAll()]);
+        $args = func_get_args();
+        if (!empty($args[0]['user_id'])) {
+            $this->view->requireView('showFilesTable', ['images' => $this->model->findByUserId($args[0]['user_id'])]);
+        }
     }
 
 
